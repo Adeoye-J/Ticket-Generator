@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion'
 import Events from './pages/Events'
 import MyTickets from './pages/MyTickets'
 import Home from './pages/Home'
+import AboutProject from './pages/AboutProject'
 
 const App = () => {
 
@@ -17,7 +18,7 @@ const App = () => {
                     <Route index element={<Home />} />
                     <Route path='/events' element={<Events />} />
                     <Route path='/my-tickets' element={<MyTickets />} />
-                    <Route path='/about' element={<About />} />
+                    <Route path='/about' element={<AboutProject />} />
                 </Routes>
             </div>
         </AnimatePresence>
