@@ -2,10 +2,17 @@ import React, { useState } from 'react'
 import logo from "/logo.png"
 import dropdown_icon from "/dropdown_icon.png"
 import { Link, NavLink } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const Navbar = () => {
 
     const [showMenu, setShowMenu] = useState(false)
+
+    const navVariants = {
+        hidden: { x: "-100%" }, // Start off-screen (left)
+        visible: { x: 0, transition: { duration: 0.5, ease: "easeOut" } }, // Slide in
+        exit: { x: "-100%", transition: { duration: 0.3, ease: "easeIn" } }, // Slide out
+    };
 
     return (
         <div className='flex justify-between items-center p-3 px-5 border border-white rounded-3xl'>
@@ -34,17 +41,26 @@ const Navbar = () => {
             </Link>
 
             {/* Side bar menu for smaller screen */}
-            <div className={`absolute top-0 left-0 bottom-0 overflow-hidden w-[80%] h-full bg-white transition-all z-50 ${showMenu ? 'block' : 'hidden'}`}>
-                <div className='flex flex-col text-gray-600'>
-                    <div onClick={() => setShowMenu(false)} className="flex items-center gap-4 p-3 cursor-pointer">
-                        <img src={dropdown_icon} className='h-4 rotate-180' alt="" />
-                        <p>Back</p>
+            {showMenu &&
+                <motion.div 
+                    variants={navVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className={`absolute top-0 left-0 bottom-0 overflow-hidden w-[80%] h-full bg-[#02191D] border-r border-white transition-all z-50`}
+                    // className={`absolute top-0 left-0 bottom-0 overflow-hidden w-[80%] h-full bg-white transition-all z-50 ${showMenu ? 'block' : 'hidden'}`}
+                >
+                    <div className='flex flex-col text-white'>
+                        <div onClick={() => setShowMenu(false)} className="flex items-center gap-4 p-3 cursor-pointer">
+                            <img src={dropdown_icon} className='h-4 rotate-180' alt="" />
+                            <p>Back</p>
+                        </div>
+                        <NavLink onClick={() => setShowMenu(false)} to='/events' className='py-5 pl-6 border-t border-white' end>Events</NavLink>
+                        <NavLink onClick={() => setShowMenu(false)} to='/my-tickets' className='py-5 pl-6 border-t border-white' end>My Tickets</NavLink>
+                        <NavLink onClick={() => setShowMenu(false)} to='/about' className='py-5 pl-6 border-y border-white' end>About Project</NavLink>
                     </div>
-                    <NavLink onClick={() => setShowMenu(false)} to='/events' className='py-5 pl-6 border' end>Events</NavLink>
-                    <NavLink onClick={() => setShowMenu(false)} to='/my-tickets' className='py-5 pl-6 border' end>My Tickets</NavLink>
-                    <NavLink onClick={() => setShowMenu(false)} to='/about' className='py-5 pl-6 border' end>About Project</NavLink>
-                </div>
-            </div>
+                </motion.div>
+            }
         </div>
     )
 }
