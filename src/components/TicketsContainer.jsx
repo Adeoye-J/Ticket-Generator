@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { TicketContext } from '../context/TicketContext'
 import ProgressBar from './ProgressBar'
 import TicketSelection from './TicketSelection'
 import AttendeeDetails from './AttendeeDetails'
-import BookedTicket from './BookedTicket'
 import TicketDetails from './TicketDetails'
 
 const TicketsContainer = () => {

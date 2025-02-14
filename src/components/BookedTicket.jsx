@@ -1,17 +1,3 @@
-// import React from 'react'
-// import card from "/card.svg"
-
-// const BookedTicket = () => {
-//     return (
-//         <div>
-//             <img src={card} alt="" />
-//         </div>
-//     )
-// }
-
-// export default BookedTicket
-
-
 import React, { useContext } from "react";
 import { TicketContext } from "../context/TicketContext";
 import barcode from "/barcode.svg"
