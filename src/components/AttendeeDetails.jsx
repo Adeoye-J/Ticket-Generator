@@ -4,11 +4,8 @@ import { TicketContext } from "../context/TicketContext";
 import { Upload, Loader } from "lucide-react";
 
 const AttendeeDetails = () => {
-  const { prevStep, nextStep, avatar, setAvatar } = useContext(TicketContext);
+  const { prevStep, nextStep, avatar, setAvatar, formData, updateFormData } = useContext(TicketContext);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [specialRequest, setSpecialRequest] = useState("");
   const [error, setError] = useState("");
   const [formError, setFormError] = useState("");
   const [loading, setLoading] = useState(false); // Loading state
@@ -64,23 +61,23 @@ const AttendeeDetails = () => {
         }
     };
 
-  // Form validation before proceeding
-  const handleNextStep = () => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation
-    
-        if (!avatar || !name.trim() || !email.trim()) {
-            setFormError("Please fill in all required fields.");
-            return;
-        }
-    
-        if (!emailRegex.test(email)) {
-            setFormError("Please enter a valid email address.");
-            return;
-        }
-    
-        setFormError(""); // Clear errors if validation passes
-        nextStep();
-  };
+    // Form validation before proceeding
+    const handleNextStep = () => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation
+        
+            if (!avatar || !formData.name.trim() || !formData.email.trim()) {
+                setFormError("Please fill in all required fields.");
+                return;
+            }
+        
+            if (!emailRegex.test(formData.email)) {
+                setFormError("Please enter a valid email address.");
+                return;
+            }
+        
+            setFormError(""); // Clear errors if validation passes
+            nextStep();
+    };
 
   return (
     <div className="sm:border border-[#0E464F] my-6 sm:p-6 rounded-3xl">
@@ -99,7 +96,7 @@ const AttendeeDetails = () => {
               <img
                 src={avatar}
                 alt="Avatar Preview"
-                className="w-full h-full object-cover border"
+                className="w-full h-full object-cover border rounded-2xl"
               />
             ) : (
               <>
@@ -126,8 +123,8 @@ const AttendeeDetails = () => {
         <input
           type="text"
           className="w-full outline-none border border-[#0E464F] bg-transparent px-4 py-2 rounded-xl text-base focus:border-2"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={formData.name || ""}
+          onChange={(e) => updateFormData({ name: e.target.value })}
           required
         />
       </div>
@@ -139,8 +136,8 @@ const AttendeeDetails = () => {
           <input
             type="email"
             className="w-full h-full outline-none bg-transparent px-2 py-3 text-base"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email || ""}
+            onChange={(e) => updateFormData({ email: e.target.value })}
             required
           />
         </div>
@@ -152,8 +149,8 @@ const AttendeeDetails = () => {
           name=""
           id=""
           className="p-4 h-36 w-full outline-none bg-transparent border border-[#0E464F] rounded-xl text-base focus:border-2"
-          value={specialRequest}
-          onChange={(e) => setSpecialRequest(e.target.value)}
+          value={formData.specialRequest || ""}
+          onChange={(e) => updateFormData({ specialRequest: e.target.value })}
         ></textarea>
       </div>
 

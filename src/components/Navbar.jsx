@@ -26,11 +26,11 @@ const Navbar = () => {
             </Link>
 
             <ul className='hidden sm:flex items-center gap-4 text-white text-lg'>
+                <NavLink to={"/"} className="font-[300]">
+                    <p>Home</p>
+                </NavLink>
                 <NavLink to={"/events"} className="font-[300]">
                     <p>Events</p>
-                </NavLink>
-                <NavLink to={"/my-tickets"} className="font-[300]">
-                    <p>My Tickets</p>
                 </NavLink>
                 <NavLink to={"/about"} className="font-[300]">
                     <p>About Project</p>
@@ -56,8 +56,8 @@ const Navbar = () => {
                             <img src={dropdown_icon} className='h-4 rotate-180' alt="" />
                             <p>Back</p>
                         </div>
+                        <NavLink onClick={() => setShowMenu(false)} to='/' className='py-5 pl-6 border-t border-white' end>Home</NavLink>
                         <NavLink onClick={() => setShowMenu(false)} to='/events' className='py-5 pl-6 border-t border-white' end>Events</NavLink>
-                        <NavLink onClick={() => setShowMenu(false)} to='/my-tickets' className='py-5 pl-6 border-t border-white' end>My Tickets</NavLink>
                         <NavLink onClick={() => setShowMenu(false)} to='/about' className='py-5 pl-6 border-y border-white' end>About Project</NavLink>
                     </div>
                 </motion.div>

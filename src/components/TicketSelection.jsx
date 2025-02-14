@@ -1,8 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { TicketContext } from '../context/TicketContext';
+import { useNavigate } from 'react-router-dom';
 
 const TicketSelection = () => {
-    const { prevStep, nextStep, formData, updateFormData } = useContext(TicketContext);
+    const { nextStep, formData, updateFormData } = useContext(TicketContext);
+
+    const navigate = useNavigate()
     
     const tickets = [
         { price: "Free", type: "REGULAR ACCESS", seats: "20/52" },
@@ -74,7 +77,7 @@ const TicketSelection = () => {
             {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
             <div className="flex flex-col sm:flex-row gap-2">
-                <button onClick={prevStep} className='order-2 sm:order-1 flex-1 border border-[#24A0B5] rounded-xl py-3 text-base sm:text-sm md:text-lg text-[#24A0B5] hover:bg-red-700 hover:text-white transition-all ease-in-out duration-500'>Cancel</button>
+                <button onClick={() => navigate("/")} className='order-2 sm:order-1 flex-1 border border-[#24A0B5] rounded-xl py-3 text-base sm:text-sm md:text-lg text-[#24A0B5] hover:bg-red-700 hover:text-white transition-all ease-in-out duration-500'>Cancel</button>
                 <button onClick={handleNext} className={`order-1 sm:order-2 flex-1 border border-[#24A0B5] rounded-xl py-3 text-base sm:text-sm md:text-lg text-[#24A0B5] transition-all ease-in-out duration-500 
                     ${(!selectedTicket || !formData.numTickets) ? "opacity-50 cursor-not-allowed" : "hover:bg-[#24A0B5] hover:text-white"}`} 
                     disabled={!selectedTicket || !formData.numTickets}>

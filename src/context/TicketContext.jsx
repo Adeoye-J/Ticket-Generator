@@ -1,7 +1,5 @@
 import { createContext, useState } from "react";
 
-
-
 export const TicketContext = createContext()
 
 const TicketProvider = (props) => {

@@ -31,24 +31,24 @@ const BookedTicket = () => {
                     <div className="grid grid-cols-2 w-full">
                         <div className="flex flex-col gap-2 items-start border-r border-b border-[#12464E] p-2">
                             <p className="text-sm text-gray-500">Enter your name</p>
-                            <p className="text-white text-sm">Avi Chukwu</p>
+                            <p className="text-white text-sm">{formData.name}</p>
                         </div>
                         <div className="flex flex-col gap-2 items-start border-b border-[#12464E] py-2 px-3">
-                            <p className="text-sm text-gray-500">Enter your name</p>
-                            <p className="text-white text-sm">Avi Chukwu</p>
+                            <p className="text-sm text-gray-500">Enter your email *</p>
+                            <p className="text-white text-sm">{formData.email}</p>
                         </div>
                         <div className="flex flex-col gap-2 items-start border-r border-[#12464E] py-2 px-3">
-                            <p className="text-sm text-gray-500">Enter your name</p>
-                            <p className="text-white text-sm">Avi Chukwu</p>
+                            <p className="text-sm text-gray-500">Ticket Type:</p>
+                            <p className="text-white text-sm">{formData.ticketType.type}</p>
                         </div>
                         <div className="flex flex-col gap-2 items-start py-2 px-3">
-                            <p className="text-sm text-gray-500">Enter your name</p>
-                            <p className="text-white text-sm">Avi Chukwu</p>
+                            <p className="text-sm text-gray-500">Ticket for:</p>
+                            <p className="text-white text-sm">{formData.numTickets}</p>
                         </div>
                     </div>
                     <div className="border-t border-[#12464E] flex flex-col gap-2 py-2 px-3 items-start">
-                        <p className="text-sm text-gray-500">Enter your name</p>
-                        <p className="text-white text-sm">Avi Chukwu</p>
+                        <p className="text-sm text-gray-500">Special request?</p>
+                        <p className="text-white text-sm">{formData.specialRequest}</p>
                     </div>
                 </div>
             </div>
