@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/url-gen": "^1.21.0",
     "axios": "^1.7.9",
     "formik": "^2.4.6",
     "framer-motion": "^12.4.2",
     "localforage": "^1.10.0",
+    "lucide-react": "^0.475.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",

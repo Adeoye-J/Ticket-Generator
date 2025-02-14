@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Road+Rage&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,4 +7,9 @@
 
 a.active {
     font-weight: 600;
+}
+
+.road-rage {
+    font-family: "Road Rage", serif;
+    font-style: normal;
 }

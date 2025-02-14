@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import logo from "/logo.png"
 import dropdown_icon from "/dropdown_icon.png"
+import right_arrow from "/right_arrow.png"
 import { Link, NavLink } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const Navbar = () => {
 
@@ -15,8 +16,8 @@ const Navbar = () => {
     };
 
     return (
-        <div className='flex justify-between items-center p-3 px-5 border border-white rounded-3xl'>
-            <Link onClick={() => setShowMenu(true)} className='sm:hidden' to={"/"}>
+        <div className='flex justify-between items-center p-3 px-5 border border-[#0E464F] rounded-3xl'>
+            <Link onClick={() => setShowMenu(true)} className='sm:hidden'>
                 <img src={logo} alt="" />
             </Link>
 
@@ -28,7 +29,7 @@ const Navbar = () => {
                 <NavLink to={"/events"} className="font-[300]">
                     <p>Events</p>
                 </NavLink>
-                <NavLink to={"/"} className="font-[300]">
+                <NavLink to={"/my-tickets"} className="font-[300]">
                     <p>My Tickets</p>
                 </NavLink>
                 <NavLink to={"/about"} className="font-[300]">
@@ -36,8 +37,8 @@ const Navbar = () => {
                 </NavLink>
             </ul>
 
-            <Link to={"/"} className='px-4 py-2 sm:px-6 sm:py-3 bg-white text-black text-base sm:text-lg rounded-xl hover:bg-[#02191D] hover:text-white transition-all ease-in-out duration-500 border border-white'>
-                <p>MY TICKETS</p>
+            <Link to={"/my-tickets"} className='px-4 py-2 sm:px-6 sm:py-3 bg-white text-black text-sm sm:text-base rounded-xl hover:bg-[#02191D] hover:text-white transition-all ease-in-out duration-500 border border-white'>
+                <p className='flex gap-2 group'>MY TICKETS <img src={right_arrow} className='w-5 group-hover:translate-x-1 duration-500 ease-in-out' alt="" /></p>
             </Link>
 
             {/* Side bar menu for smaller screen */}

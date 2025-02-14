@@ -5,6 +5,8 @@ const TicketSelection = ({ nextStep, updateFormData }) => {
       updateFormData({ ticketType: type });
       nextStep();
     };
+
+    
   
     return (
       <div className="">
