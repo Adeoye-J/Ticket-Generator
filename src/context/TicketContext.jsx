@@ -6,6 +6,29 @@ export const TicketContext = createContext()
 
 const TicketProvider = (props) => {
 
+    const initialData = JSON.parse(localStorage.getItem("formData")) || {
+        ticketType: {},
+        numTickets: "",
+        name: "",
+        email: "",
+        profilePhoto: "",
+        specialRequest: ""
+    };
+    
+    const [formData, setFormData] = useState(initialData);
+
+    // Function to update form data
+    const updateFormData = (newData) => {
+        setFormData((prev) => {
+            const updatedData = { ...prev, ...newData };
+
+            // Save immediately to localStorage
+            localStorage.setItem("formData", JSON.stringify(updatedData));
+            
+            return updatedData;
+        });
+    };
+
     const [avatar, setAvatar] = useState("");
 
     const titles = [
@@ -33,8 +56,10 @@ const TicketProvider = (props) => {
     }
 
     const value = {
-        titles, step, setStep, prevStep, nextStep, avatar, setAvatar
+        titles, step, setStep, prevStep, nextStep, avatar, setAvatar, formData, updateFormData
     }
+
+    
 
     return(
         <TicketContext.Provider value={value}>
