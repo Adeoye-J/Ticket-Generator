@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import email_icon from "/email_icon.png";
 import { TicketContext } from "../context/TicketContext";
-import { Upload } from "lucide-react";
+import { Upload, Loader } from "lucide-react";
 
 const AttendeeDetails = () => {
   const { prevStep, nextStep, avatar, setAvatar } = useContext(TicketContext);
@@ -11,63 +11,75 @@ const AttendeeDetails = () => {
   const [specialRequest, setSpecialRequest] = useState("");
   const [error, setError] = useState("");
   const [formError, setFormError] = useState("");
+  const [loading, setLoading] = useState(false); // Loading state
 
-  // Cloudinary Upload Function
-  const uploadToCloudinary = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "ticketgenerator"); // Replace with your Cloudinary preset
+    // Cloudinary Upload Function
+    const uploadToCloudinary = async (file) => {
+        setLoading(true); // Start loading
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "ticketgenerator"); // Replace with your Cloudinary preset
 
-    try {
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/drkknoddw/image/upload",
-        {
-          method: "POST",
-          body: formData,
+        try {
+            const res = await fetch(
+                "https://api.cloudinary.com/v1_1/drkknoddw/image/upload",
+                {
+                    method: "POST",
+                    body: formData,
+                }
+            );
+
+            const data = await res.json();
+            if (data.secure_url) {
+                setAvatar(data.secure_url);
+                setError("");
+            } else {
+                setError("Failed to upload image.");
+            }
+        } catch (err) {
+            setError("Error uploading image.");
+        } finally {
+            setLoading(false); // Stop loading
         }
-      );
+    };
 
-      const data = await res.json();
-      if (data.secure_url) {
-        setAvatar(data.secure_url);
-        setError("");
-      } else {
-        setError("Failed to upload image.");
-      }
-    } catch (err) {
-      setError("Error uploading image.");
-    }
-  };
-
-  // Handle File Selection
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      uploadToCloudinary(file);
-    } else {
-      setError("Please upload a valid image.");
-    }
-  };
+    // Handle File Selection
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith("image/")) {
+            uploadToCloudinary(file);
+        } else {
+            setError("Please upload a valid image.");
+        }
+    };
 
   // Handle Drag & Drop
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith("image/")) {
-      uploadToCloudinary(file);
-    } else {
-      setError("Invalid file type.");
-    }
-  };
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith("image/")) {
+            uploadToCloudinary(file);
+        } else {
+            setError("Invalid file type.");
+        }
+    };
 
   // Form validation before proceeding
   const handleNextStep = () => {
-    if (!avatar || !name.trim() || !email.trim()) {
-      setFormError("Please fill in all required fields.");
-      return;
-    }
-    setFormError(""); // Clear errors if validation passes
-    nextStep();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation
+    
+        if (!avatar || !name.trim() || !email.trim()) {
+            setFormError("Please fill in all required fields.");
+            return;
+        }
+    
+        if (!emailRegex.test(email)) {
+            setFormError("Please enter a valid email address.");
+            return;
+        }
+    
+        setFormError(""); // Clear errors if validation passes
+        nextStep();
   };
 
   return (
@@ -81,7 +93,9 @@ const AttendeeDetails = () => {
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
           >
-            {avatar ? (
+            {loading ? (
+              <Loader size={32} className="animate-spin text-white" />
+            ) : avatar ? (
               <img
                 src={avatar}
                 alt="Avatar Preview"
@@ -97,6 +111,7 @@ const AttendeeDetails = () => {
               type="file"
               className="absolute inset-0 opacity-0 cursor-pointer"
               onChange={handleFileChange}
+              disabled={loading}
             />
           </div>
         </div>

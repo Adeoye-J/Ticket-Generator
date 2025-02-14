@@ -34,9 +34,9 @@ const TicketSelection = () => {
     };
 
     return (
-        <div className='sm:border border-[#0E464F] my-6 sm:p-6 rounded-3xl'>
-            <div className="border border-[#0E464F] rounded-3xl p-6 mb-6 flex flex-col gap-2 items-center text-center text-white">
-                <h1 className='text-4xl sm:text-5xl md:text-6xl font-extrabold road-rage'>Techember Fest '25</h1>
+        <div className='sm:border border-[#0E464F] my-6 sm:p-6 rounded-3xl bg-[#08252B]'>
+            <div className="border border-[#0E464F] rounded-3xl p-6 mb-6 flex flex-col gap-2 items-center text-center text-white bg-[#0b353d]">
+                <h1 className='text-4xl sm:text-5xl md:text-6xl font-extralight road-rage'>Techember Fest '25</h1>
                 <p className='w-[90%] md:w-[60%] mb-2 text-sm lg:text-base'>Join us for an unforgettable experience at [Event Name]! Secure your spot now.</p>
                 <p className='flex flex-col sm:flex-row items-center gap-2 text-sm lg:text-base'><span>📍[Event Location]📍</span> <span className='hidden sm:block'>||</span> <span>March 15, 2025 | 7:00PM</span></p>
             </div>
@@ -46,7 +46,7 @@ const TicketSelection = () => {
             <div className="text-white mb-6">
                 <h3 className='text-[16px] mb-4'>Select Ticket Type:</h3>
 
-                <div className="border border-[#0E464F] rounded-3xl flex flex-col sm:flex-row gap-3 p-4">
+                <div className="border border-[#0E464F] rounded-3xl flex flex-col sm:flex-row gap-3 p-4 bg-[#052228]">
                     {tickets.map((item, index) => (
                         <div key={index} 
                             onClick={() => handleSelect(index)} 

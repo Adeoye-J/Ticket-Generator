@@ -4,7 +4,7 @@ import barcode from "/barcode.svg"
 
 const BookedTicket = () => {
 
-    const {avatar} = useContext(TicketContext)
+    const {avatar, formData} = useContext(TicketContext)
 
   return (
     <div className="flex justify-center items-center min-h-screen">
