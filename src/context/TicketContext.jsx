@@ -15,12 +15,10 @@ const TicketProvider = (props) => {
     
     const [formData, setFormData] = useState(initialData);
 
-    // Function to update form data
     const updateFormData = (newData) => {
         setFormData((prev) => {
             const updatedData = { ...prev, ...newData };
 
-            // Save immediately to localStorage
             localStorage.setItem("formData", JSON.stringify(updatedData));
             
             return updatedData;

@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'
-import About from './pages/About'
 import { AnimatePresence } from 'framer-motion'
 import Events from './pages/Events'
 import MyTickets from './pages/MyTickets'
