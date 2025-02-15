@@ -77,7 +77,7 @@ The **Ticket Generator** is a web application built with **React (Vite) and Tail
 This project is open-source and available under the **MIT License**.
 
 ## Author
-Developed by **[Your Name]**. Reach out on **[Your LinkedIn/GitHub]** for collaboration or improvements.
+Developed by **Jeremiah Bankole**. Reach out on **[LinkedIn](https://linkedin.com/in/jeremiah-bankole)** for collaboration or improvements.
 
 ---
 Enjoy using the **Ticket Generator**! 🎟️🚀
